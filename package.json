@@ -1,17 +1,19 @@
 {
   "name": "local-info",
   "version": "0.1.0",
-  "description": "local info show.",
+  "description": "Show the local information.",
   "main": "index.js",
   "bin": {
-    "local-info": "bin/local"
+    "localinfo": "bin/local"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nieweidong/local-info.git"
   },
   "keywords": [
-    "local"
+    "local",
+    "info",
+    "cli"
   ],
   "dependencies": {
     "colors": "^1.1.2",
