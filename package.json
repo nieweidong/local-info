@@ -1,0 +1,22 @@
+{
+  "name": "local-info",
+  "version": "0.1.0",
+  "description": "local info show.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nieweidong/local-info.git"
+  },
+  "keywords": [
+    "local"
+  ],
+  "author": "nieweidong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nieweidong/local-info/issues"
+  },
+  "homepage": "https://github.com/nieweidong/local-info"
+}
