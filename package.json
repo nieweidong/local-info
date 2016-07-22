@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "local info show.",
   "main": "index.js",
-  "scripts": {
-    "test": "npm test"
+  "bin": {
+    "local-info": "bin/local"
   },
   "repository": {
     "type": "git",
@@ -13,6 +13,10 @@
   "keywords": [
     "local"
   ],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0"
+  },
   "author": "nieweidong",
   "license": "MIT",
   "bugs": {
