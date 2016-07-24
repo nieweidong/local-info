@@ -1,9 +1,10 @@
 # loc
 
-Show the local information.
+如你所想，```loc``` 就是 local 的意思，项目的初衷是想通过各种 CLI 工具，详细展示本地环境的状态。
 
-基于 Commander.js 的demo
+顺带，这里也会记录和完善各种有意思的 command 尝试。当然，首先得是基于 Node。
 
+暂时仅仅研究了 [Commander.js](https://github.com/tj/commander.js) / [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)，而且栗子有限，继续完善ing~
 
 ## install
 
