@@ -1,6 +1,6 @@
 {
   "name": "local-info",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Show the local information.",
   "main": "index.js",
   "bin": {
