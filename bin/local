@@ -3,68 +3,138 @@
 let program = require('commander')
 let colors = require('colors')
 let p = require('child_process')
+let inquirer = require('inquirer')
 
 program
   .version(require('../package').version)
   .option('-d, --date', 'show time')
 
 program
-  .command('setup')
-  .description('run remote setup commands')
+  .command('init')
+  .description('run init commands. 查看本机状态')
   .action(function() {
-    console.log('setup')
+    init()
   })
 
 program
-  .command('exec <cmd>')
-  .description('run the given remote command')
+  .command('name')
+  .description('run name command. 一个自恋的尝试')
   .action(function(cmd) {
-    console.log('exec "%s"', cmd)
-  })
-
-program
-  .command('teardown <dir> [otherDirs...]')
-  .description('run teardown commands')
-  .action(function(dir, otherDirs) {
-    console.log('dir "%s"', dir)
-    if (otherDirs) {
-      otherDirs.forEach(function (oDir) {
-        console.log('dir "%s"', oDir)
-      })
-    }
-  })
-
-program
-  .command('*')
-  .description('deploy the given env')
-  .action(function(env) {
-   console.log('deploying "%s"', env)
-  })
-
-program.parse(process.argv)
-
-process.stdout.write('\n')
-
-process.stdin.on('readable', function(chunk) {
-  console.log(`███╗
+console.log(`███╗
 █╔═█╗
 █║ ╚█╗ ███╗ █╗██╗ █╗██╗  ███╗ █╗██╗
 █║  █║ ╚══█╗██╬═█╗██╬═█╗█╬══█╗██╬═█╗
 █║  █║ ████║█╔╝ ╚╝█╔╝ ╚╝█████║█╔╝ █║
 █║ █╬╝█╬══█║█║    █║    █╔═══╝█║  █║
 ███╬╝ ╚████║█║    █║    ╚███╗ █║  █║
-╚══╝   ╚═══╝╚╝    ╚╝     ╚══╝ ╚╝  ╚╝
-  `)
-})
+╚══╝   ╚═══╝╚╝    ╚╝     ╚══╝ ╚╝  ╚╝`)
+  })
+
+program
+  .command('inquirer')
+  .description('Inquirer.js 的测试栗子')
+  .action(function(env) {
+    inquirerDemo()
+  })
+
+if (process.argv.length === 2) {
+  console.log(`喵~输入以下代码有惊喜：
+$ loc init
+$ loc name
+$ loc inquirer`)
+}
+
+program.parse(process.argv)
 
 console.log(process.argv[1].rainbow)
 
 function init () {
   let nodeVersion = p.execSync('node -v').toString()
   let npmVersion = p.execSync('npm -v').toString()
-
-  console.log(`
-node: ${nodeVersion}npm: ${npmVersion}`)
+  console.log(`node: ${nodeVersion}npm: ${npmVersion}`)
 }
 
-init()
+function inquirerDemo () {
+  var question = [
+    {
+      type: 'confirm',
+      name: 'q1',
+      message: '今儿天气好不好呢?',
+    }, {
+      type: 'input',
+      name: 'q2',
+      message: '晚上想吃点啥？请手动输入：',
+    }, {
+      type: 'list',
+      name: 'q3',
+      message: '晚上想吃点啥？请选择：',
+      choices: ['冒菜', '鸭血粉丝', '重庆小面']
+    }, {
+      type: 'rawlist',
+      name: 'q4',
+      message: '晚上想吃点啥？请输入序号',
+      choices: ['冒菜', '鸭血粉丝', '重庆小面']
+    }, {
+      type: 'expand',
+      name: 'q5',
+      message: '晚上想吃点啥？输入h是帮助和查看全部：',
+      choices: [
+        {
+          key: 'a',
+          name: '冒菜',
+          value: 'maocai'
+        },
+        {
+          key: 'b',
+          name: '鸭血粉丝',
+          value: 'yaxue'
+        },
+        {
+          key: 'c',
+          name: '重庆小面',
+          value: 'xiaomian'
+        }
+      ]
+    }, {
+      type: 'checkbox',
+      name: 'q6',
+      message: '晚上想吃点啥？可多选哦：',
+      choices: [
+        new inquirer.Separator(' = 主食篇 = '),
+        {
+          name: '冒菜'
+        },
+        {
+          name: '鸭血粉丝'
+        },
+        {
+          name: '重庆小面'
+        },
+        new inquirer.Separator(' = 饮料篇 = '),
+        {
+          name: '珍珠奶茶',
+          checked: true
+        },
+        {
+          name: '可乐'
+        },
+        {
+          name: '牛二'
+        }
+      ]
+    }, {
+      type: 'password',
+      name: 'q7',
+      message: '是不是自己人呢？请输入口令： (提示，优秀员工的名称)'
+    }
+  ]
+
+  inquirer.prompt(question).then(function (answers) {
+    // console.log(JSON.stringify(answers, null, '  '))
+    if(answers.q7 === 'xiaoxin') {
+      console.log('就这么愉快的决定了，走你')
+    } else {
+      console.log('卧槽，你是想屎，竟敢不知道我们的优秀员工')
+    }
+  })
+}
