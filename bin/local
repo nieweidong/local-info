@@ -26,26 +26,27 @@ program
   .command('teardown <dir> [otherDirs...]')
   .description('run teardown commands')
   .action(function(dir, otherDirs) {
-    console.log('dir "%s"', dir);
+    console.log('dir "%s"', dir)
     if (otherDirs) {
       otherDirs.forEach(function (oDir) {
-        console.log('dir "%s"', oDir);
-      });
+        console.log('dir "%s"', oDir)
+      })
     }
   })
 
 program
-   .command('*')
-   .description('deploy the given env')
-   .action(function(env) {
-     console.log('deploying "%s"', env);
-   })
+  .command('*')
+  .description('deploy the given env')
+  .action(function(env) {
+   console.log('deploying "%s"', env)
+  })
 
 program.parse(process.argv)
 
+process.stdout.write('\n')
+
 process.stdin.on('readable', function(chunk) {
-  console.log(`
-███╗
+  console.log(`███╗
 █╔═█╗
 █║ ╚█╗ ███╗ █╗██╗ █╗██╗  ███╗ █╗██╗
 █║  █║ ╚══█╗██╬═█╗██╬═█╗█╬══█╗██╬═█╗
